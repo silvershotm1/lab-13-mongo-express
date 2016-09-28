@@ -19,7 +19,7 @@
  * have a lint task for running eslint
  * have a test task for running mocha
  * have a default task for running the lint and mocha tasks
- * a reademe with a project discription and api docs
+* a reademe with a project discription and api docs
 
 # Directions
 * Create these directories to organize your code: 
