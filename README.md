@@ -19,7 +19,7 @@
  * have a lint task for running eslint
  * have a test task for running mocha
  * have a default task for running the lint and mocha tasks
- * a reademe with a project discription and api docs
+* a reademe with a project discription and api docs
 
 # Directions
 * Create these directories to organize your code: 
@@ -33,7 +33,7 @@
  * The model can represent what ever data you choose. _e.g. note, blog post, store items_
 * use the `body-parser` express middleware to on `POST` and `PUT` routes
 * use the npm `debug` module to log the functions being executed in your app
-* using the express `Router` create a route for doing **RESTFUL CRUD** operations on your _ Mode_
+* using the express `Router` create a route for doing **RESTFUL CRUD** operations on your _Model_
 
 ## Server Endpoints
 ### `/api/model-name`
