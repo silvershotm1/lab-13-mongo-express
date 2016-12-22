@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const jsonParser = require('body-parser').jsonParser;
-const morgan = require('morgan')
+const morgan = require('morgan');
 
 let MONGODB_URI = process.env.MONGODB_URI || 'mongod://localhost/recipeDB';
 let PORT = process.env.PORT || 3000;
