@@ -16,3 +16,18 @@ recipeRouter.get('/api/recipe/:id', (req, res, next) => {
     .then(recipe => res.json(recipe))
     .catch(next);
 });
+
+recipeRouter.put('/api/recipe/:id', jsonParser, (req, res, next) => {
+  console.log(req.body);
+  Recipe.findByIdAndUpdate(req.params.id, req.body)
+    .then(recipe => res.json(recipe))
+    .catch(next);
+});
+
+recipeRouter.delete('/api/recipe/:id',(req, res, next) => {
+  console.log(req.body);
+  Recipe.remove(req.params.id)
+    .then(recipe => res.json(recipe))
+    .catch(next);
+});
+

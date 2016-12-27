@@ -25,15 +25,15 @@ describe('testing route /api/recipe', function(){
   });
   describe('testing POST requests', function(){
     describe('with valid body', function(){
-      after( done => {
-        if(this.tempRecipe){
-          Recipe.remove({})
-          .then(() => done())
-          .catch(done);
-          return;
-        }
-        done();
-      });
+      // after( done => {
+      //   if(this.tempRecipe){
+      //     Recipe.remove({})
+      //     .then(() => done())
+      //     .catch(done);
+      //     return;
+      //   }
+      //   done();
+      // });
 
       it('should return a recipe', done => {
         request.post(`${URL}/api/recipe`)
@@ -63,16 +63,16 @@ describe('testing route /api/recipe', function(){
         .catch(done);
       });
 
-      after( done => {
-        delete testRecipe.createDate;
-        if(this.tempRecipe){
-          Recipe.remove({})
-          .then(() => done())
-          .catch(done);
-          return;
-        }
-        done();
-      });
+      // after( done => {
+      //   delete testRecipe.createDate;
+      //   if(this.tempRecipe){
+      //     Recipe.remove({})
+      //     .then(() => done())
+      //     .catch(done);
+      //     return;
+      //   }
+      //   done();
+      // });
 
       it('should return a recipe', done => {
         request.get(`${URL}/api/recipe/${this.tempRecipe._id}`)
@@ -80,8 +80,6 @@ describe('testing route /api/recipe', function(){
           if (err) return done(err);
           expect(res.status).to.equal(200);
           expect(res.body.name).to.equal('hamburgers');
-          expect(res.body.mealType).to.equal('lunch');
-          expect(res.body.origin).to.equal('NC');
           done();
         });
       });

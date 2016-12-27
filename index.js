@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const jsonParser = require('body-parser').jsonParser;
 const morgan = require('morgan');
 
-let MONGODB_URI = process.env.MONGODB_URI || 'mongod://localhost/recipeDB';
+let MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/api/recipeDB';
 let PORT = process.env.PORT || 3000;
 mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI);
