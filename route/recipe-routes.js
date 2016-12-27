@@ -16,6 +16,11 @@ recipeRouter.get('/api/recipe/:id', (req, res, next) => {
     .then(recipe => res.json(recipe))
     .catch(next);
 });
+recipeRouter.get('/api/recipe/', (req, res, next) => {  
+  Recipe.find().exists('_id')
+    .then(recipe => res.json(recipe))
+    .catch(next);
+});
 
 recipeRouter.put('/api/recipe/:id', jsonParser, (req, res, next) => {
   console.log(req.body);
