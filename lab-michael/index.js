@@ -1,6 +1,8 @@
+'use strict';
+
 const express = require('express');
 const mongoose = require('mongoose');
-const jsonParser = require('body-parser').jsonParser;
+// const jsonParser = require('body-parser').jsonParser;
 const morgan = require('morgan');
 
 let MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/api/recipeDB';
