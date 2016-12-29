@@ -2,6 +2,8 @@
 
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const Ingredient = require('./ingredients.js');
+const createError = require('http-errors');
 
 let recipeSchema = Schema({
   name: {type: String, required: true},
@@ -11,18 +13,18 @@ let recipeSchema = Schema({
 
 const Recipe = module.exports = mongoose.model('recipe', recipeSchema); // look at later
 
-Recipe.findByIdAndAddIngredients = function(id, recipe) {
+Recipe.findByIdAndAddItem = function(id, ingredient){
   return Recipe.findById(id)
-  .catch(err)
+  .catch(err => Promise.reject(createError(404, err.message)))
   .then(recipe => {
-    ingredients.recipeID = recipe._id;
+    ingredient.recipeID = recipe._id;
     this.tempRecipe = recipe;
-    return new Recipe(recipe).save();
+    return new Ingredient(ingredient).save();
   })
   .then( ingredient => {
-    this.tempRecipe.ingredients.push(ingredient._id);
+    this.tempRecipe.ingredient.push(ingredient._id);
     this.tempIngredient = ingredient;
-    return this.tempRecipe.save();
+    return this.tempStore.save();
   })
   .then( () => {
     return this.tempIngredient;

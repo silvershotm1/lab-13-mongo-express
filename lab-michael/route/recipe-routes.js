@@ -13,6 +13,7 @@ recipeRouter.post('/api/recipe', jsonParser, (req, res, next) => {
 
 recipeRouter.get('/api/recipe/:id', (req, res, next) => {
   Recipe.findById(req.params.id)
+  .populate('ingredients')
     .then(recipe => res.json(recipe))
     .catch(next);
 });

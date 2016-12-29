@@ -10,17 +10,17 @@ const ingredientRouter = module.exports = new Router();
 
 ingredientRouter.post('/api/recipe/:recipeID/ingredient', jsonParser, function(req, res, next){
   Recipe.findByIdAndAddProject(req.params.recipeID, req.body)
-  .then( project => res.json(project))
+  .then( ingredient => res.json(ingredient))
   .catch(next);
 });
 
-ingredientRouter.get('/api/portfolio/ingredient', function(req, res, next){
+ingredientRouter.get('/api/store/:recipeID/ingredient/:id', function(req, res, next){
   Ingredient.findById(req.params.id)
   .then(recipe => res.json(recipe))
   .catch(next);
 });
 
-ingredientRouter.put('/api/portfolio/project', jsonParser, function(req, res, next){
+ingredientRouter.put('/api/recipe/ingredient', jsonParser, function(req, res, next){
   Ingredient.findByIdAndUpdate(req.params.id, req.body, {new:true})
   .then( recipe => res.json(recipe))
   .catch(next);
