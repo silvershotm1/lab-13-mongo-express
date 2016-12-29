@@ -5,11 +5,12 @@ const Schema = mongoose.Schema;
 
 let recipeSchema = Schema({
   name: {type: String, required: true},
-  mealType: {type: String, required: true},
+  // mealType: {type: String, required: true},
   createDate: {type: Date},
-  ingredients: {type: String},
-  directions: {type: String},
-  origin: {type: String, required:true}
+  // directions: {type: String},
+  // origin: {type: String, required:true}
+  // ingredients: {type: String},
+  recipeDetailsID: {type:Schema.Types.ObjectId}
 });
 
 module.exports = mongoose.model('recipe', recipeSchema); // look at later
