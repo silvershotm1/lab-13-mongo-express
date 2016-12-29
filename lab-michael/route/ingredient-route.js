@@ -9,12 +9,12 @@ const Ingredient = require('../model/ingredients.js');
 const ingredientRouter = module.exports = new Router();
 
 ingredientRouter.post('/api/recipe/:recipeID/ingredient', jsonParser, function(req, res, next){
-  Recipe.findByIdAndAddProject(req.params.recipeID, req.body)
+  Recipe.findById(req.params.recipeID, req.body)
   .then( ingredient => res.json(ingredient))
   .catch(next);
 });
 
-ingredientRouter.get('/api/store/:recipeID/ingredient/:id', function(req, res, next){
+ingredientRouter.get('/api/recipe/:recipeID/ingredient/:id', function(req, res, next){
   Ingredient.findById(req.params.id)
   .then(recipe => res.json(recipe))
   .catch(next);
