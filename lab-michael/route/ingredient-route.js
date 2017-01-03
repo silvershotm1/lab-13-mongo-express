@@ -6,22 +6,36 @@ const jsonParser = require('body-parser').json();
 const Recipe = require('../model/recipe.js');
 const Ingredient = require('../model/ingredients.js');
 
-const ingredientRouter = module.exports = new Router();
+const ingredientsRouter = module.exports = new Router();
 
-ingredientRouter.post('/api/recipe/:recipeID/ingredient', jsonParser, function(req, res, next){
-  Recipe.findById(req.params.recipeID, req.body)
-  .then( ingredient => res.json(ingredient))
-  .catch(next);
+ingredientsRouter.post('/recipe/:id/ingredients', jsonParser, function(req, res, next){
+  let newIngredient;
+  new Ingredient(req.body).save()
+  .then(ingredients => {
+    newIngredient = ingredients;
+    return Recipe.findById(req.params.id);
+  })
+  .then(recipe => {
+    recipe._ingredients.push(newIngredient._id);
+    return recipe.save();
+  })
+  .then(newIngredient => res.send(newIngredient))
+  .catch(err => next(err));
 });
 
-ingredientRouter.get('/api/recipe/:recipeID/ingredient/:id', function(req, res, next){
+ingredientsRouter.get('/ingredients/:id', function(req, res, next){
   Ingredient.findById(req.params.id)
-  .then(recipe => res.json(recipe))
-  .catch(next);
+  .then(ingredient => res.send(ingredient))
+     .catch(err => next(err));
 });
 
-ingredientRouter.put('/api/recipe/ingredient', jsonParser, function(req, res, next){
+ingredientsRouter.get('/ingredients', function(req, res, next){
+  Ingredient.find().exists('_id')
+    .then(recipe => res.json(recipe))
+    .catch(err => next(err));
+});
+ingredientsRouter.put('/ingredients/:id', jsonParser, function(req, res, next){
   Ingredient.findByIdAndUpdate(req.params.id, req.body, {new:true})
   .then( recipe => res.json(recipe))
-  .catch(next);
+  .catch(err => next(err));
 });

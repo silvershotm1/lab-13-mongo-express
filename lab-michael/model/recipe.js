@@ -2,13 +2,13 @@
 
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const Ingredient = require('./ingredients.js');
-const createError = require('http-errors');
+// const Ingredient = require('./ingredients.js');
+// const createError = require('http-errors');
 
 let recipeSchema = Schema({
   name: {type: String, required: true},
   createDate: {type: Date},
-  ingredients: [{type:Schema.Types.ObjectId, ref: 'ingredients'}]
+  _ingredients: [{type:Schema.Types.ObjectId, ref: 'ingredients'}]
 });
 
 module.exports = mongoose.model('recipe', recipeSchema); // look at later

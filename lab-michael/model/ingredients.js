@@ -4,11 +4,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 let ingredientsSchema = Schema ({
-  mealType: {type: String, required: true},
+  _recipeID: {type:Schema.Types.ObjectId, ref: 'recipe'},
+  mealType: {type: String},
   directions: {type: String},
-  origin: {type: String, required:true},
-  // ingredients: {type: String},
-  recipeID: {type:Schema.Types.ObjectId, ref: 'recipe'}
+  origin: {type: String},
 });
 
 module.exports = mongoose.model('ingredients', ingredientsSchema);
